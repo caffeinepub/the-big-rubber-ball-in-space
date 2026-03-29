@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@300;400;500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    --background: 0.068 0.018 264;
+    --foreground: 0.94 0.018 264;
+    --card: 0.1 0.028 264;
+    --card-foreground: 0.94 0.018 264;
+    --popover: 0.12 0.035 264;
+    --popover-foreground: 0.94 0.018 264;
+    --primary: 0.8 0.12 196;
+    --primary-foreground: 0.068 0.018 264;
+    --secondary: 0.15 0.04 264;
+    --secondary-foreground: 0.94 0.018 264;
+    --muted: 0.13 0.03 264;
+    --muted-foreground: 0.62 0.04 264;
+    --accent: 0.77 0.12 80;
+    --accent-foreground: 0.068 0.018 264;
+    --destructive: 0.58 0.22 27;
+    --destructive-foreground: 0.94 0.018 264;
+    --border: 0.22 0.04 264;
+    --input: 0.18 0.04 264;
+    --ring: 0.8 0.12 196;
+    --chart-1: 0.8 0.12 196;
+    --chart-2: 0.77 0.12 80;
+    --chart-3: 0.45 0.15 305;
+    --chart-4: 0.58 0.22 27;
+    --chart-5: 0.68 0.1 196;
+    --sidebar: 0.085 0.022 264;
+    --sidebar-foreground: 0.94 0.018 264;
+    --sidebar-primary: 0.8 0.12 196;
+    --sidebar-primary-foreground: 0.068 0.018 264;
+    --sidebar-accent: 0.13 0.03 264;
+    --sidebar-accent-foreground: 0.94 0.018 264;
+    --sidebar-border: 0.22 0.04 264;
+    --sidebar-ring: 0.8 0.12 196;
+    --cyan: oklch(0.8 0.12 196);
+    --gold: oklch(0.77 0.12 80);
+    --purple: oklch(0.45 0.15 305);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Crimson Text", Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: oklch(0.8 0.12 196 / 0.35);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(0.068 0.018 264);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.8 0.12 196 / 0.5);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.8 0.12 196 / 0.8);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes orbitRing {
+  from {
+    transform: rotateX(75deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(75deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbitRing2 {
+  from {
+    transform: rotateX(55deg) rotateZ(0deg) rotateY(20deg);
+  }
+  to {
+    transform: rotateX(55deg) rotateZ(-360deg) rotateY(20deg);
+  }
+}
+
+@keyframes spherePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 60px oklch(0.8 0.12 196 / 0.4), 0 0 120px
+      oklch(0.8 0.12 196 / 0.2), 0 0 200px oklch(0.45 0.15 305 / 0.15), inset 0
+      0 60px oklch(0.068 0.018 264 / 0.8);
+  }
+  50% {
+    box-shadow: 0 0 80px oklch(0.8 0.12 196 / 0.6), 0 0 160px
+      oklch(0.8 0.12 196 / 0.3), 0 0 280px oklch(0.45 0.15 305 / 0.25), inset 0
+      0 80px oklch(0.068 0.018 264 / 0.8);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 oklch(0.8 0.12 196), -2px 0 oklch(0.58 0.22 27);
+    clip-path: inset(0 0 98% 0);
+  }
+  5% {
+    text-shadow: 2px 0 oklch(0.8 0.12 196), -2px 0 oklch(0.58 0.22 27);
+    clip-path: inset(10% 0 60% 0);
+  }
+  10% {
+    text-shadow: -2px 0 oklch(0.8 0.12 196), 2px 0 oklch(0.58 0.22 27);
+    clip-path: inset(50% 0 30% 0);
+  }
+  15% {
+    text-shadow: 0 0 oklch(0.8 0.12 196);
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    text-shadow: 0 0 oklch(0.8 0.12 196);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes glitchMain {
+  0%,
+  90%,
+  100% {
+    transform: none;
+  }
+  92% {
+    transform: translate(-2px, 1px);
+  }
+  94% {
+    transform: translate(2px, -1px);
+  }
+  96% {
+    transform: translate(-1px, 2px);
+  }
+  98% {
+    transform: translate(1px, -2px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+@keyframes holoPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes classifiedBlink {
+  0%,
+  49%,
+  100% {
+    opacity: 1;
+  }
+  50%,
+  99% {
+    opacity: 0;
+  }
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    border-color: oklch(0.8 0.12 196 / 0.4);
+    box-shadow: 0 0 10px oklch(0.8 0.12 196 / 0.2);
+  }
+  50% {
+    border-color: oklch(0.8 0.12 196 / 0.9);
+    box-shadow: 0 0 20px oklch(0.8 0.12 196 / 0.5);
+  }
+}
+
+.font-cinzel {
+  font-family: "Cinzel", serif;
+}
+.font-orbitron {
+  font-family: "Orbitron", sans-serif;
+}
+.font-crimson {
+  font-family: "Crimson Text", Georgia, serif;
+}
+
+.text-cyan {
+  color: var(--cyan);
+}
+.text-gold {
+  color: var(--gold);
+}
+.text-violet {
+  color: oklch(0.65 0.15 305);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 10px oklch(0.8 0.12 196 / 0.8), 0 0 30px
+    oklch(0.8 0.12 196 / 0.4);
+}
+.glow-gold {
+  text-shadow: 0 0 10px oklch(0.77 0.12 80 / 0.8), 0 0 30px
+    oklch(0.77 0.12 80 / 0.4);
+}
+.glow-white {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 60px
+    oklch(0.8 0.12 196 / 0.3);
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitchMain 8s infinite;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: glitch 8s infinite;
+}
+.glitch-text::before {
+  color: oklch(0.8 0.12 196);
+  animation-delay: 0s;
+}
+.glitch-text::after {
+  color: oklch(0.58 0.22 27);
+  animation-delay: 0.1s;
+}
+
+.btn-cyber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.75rem;
+  border: 1px solid oklch(0.8 0.12 196 / 0.6);
+  background: transparent;
+  color: oklch(0.8 0.12 196);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-cyber:hover {
+  border-color: oklch(0.8 0.12 196);
+  box-shadow: 0 0 15px oklch(0.8 0.12 196 / 0.5), inset 0 0 15px
+    oklch(0.8 0.12 196 / 0.1);
+  color: #fff;
+}
+.btn-gold {
+  border-color: oklch(0.77 0.12 80 / 0.6);
+  color: oklch(0.77 0.12 80);
+}
+.btn-gold:hover {
+  border-color: oklch(0.77 0.12 80);
+  box-shadow: 0 0 15px oklch(0.77 0.12 80 / 0.5), inset 0 0 15px
+    oklch(0.77 0.12 80 / 0.1);
+  color: #fff;
+}
+
+.card-cosmic {
+  background: oklch(0.1 0.028 264 / 0.75);
+  border: 1px solid oklch(0.22 0.04 264);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card-cosmic:hover {
+  border-color: oklch(0.8 0.12 196 / 0.5);
+  box-shadow: 0 0 30px oklch(0.8 0.12 196 / 0.15);
+  transform: translateY(-2px);
+}
+
+.section-visible {
+  animation: fadeInUp 0.8s ease forwards;
+}
+.section-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.scan-lines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    oklch(0.068 0.018 264 / 0.15) 2px,
+    oklch(0.068 0.018 264 / 0.15) 4px
+  );
+  pointer-events: none;
+}
+
+.rune-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: oklch(0.77 0.12 80 / 0.5);
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
+}
+.rune-divider::before,
+.rune-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(0.77 0.12 80 / 0.4),
+    transparent
+  );
+}
+
+.classified-panel {
+  border: 1px solid oklch(0.58 0.22 27 / 0.6);
+  background: oklch(0.09 0.025 30 / 0.6);
+  animation: borderGlow 2s ease infinite;
+}
+
+.holo-border {
+  animation: borderGlow 3s ease infinite;
+}
